@@ -1,0 +1,11 @@
+- name: Check if user exist
+  ansible.builtin.stat:
+    path: /etc/wireguard/wg0.conf
+  register: pivpn_client_config
+  tags: pivpn_client_config
+
+- name: Remove wireguard client confg file
+  ansible.builtin.file:
+    path: /etc/wireguard/wg0.conf
+    state: absent
+  when: pivpn_client_config.stat.exists

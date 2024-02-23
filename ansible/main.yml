@@ -1,0 +1,37 @@
+- name: Getting EC2 Instancess facts
+  hosts: wireguard
+  become: true
+  user: "{{ ansible_ssh_user }}"
+  gather_facts: false
+  tasks:
+    - ec2_metadata_facts:
+    - name: debug
+      debug: var=ansible_ec2_public_ipv4
+
+- name: Install pivpn
+  hosts: wireguard
+  become: true
+  roles:
+    - pivpn_install
+  vars:
+    - pivpn_public_server_name: "{{ ansible_ec2_public_ipv4 }}"
+
+- name: Install pivpn
+  hosts: wireguard
+  become: true
+  roles:
+    - add_vpn_user
+  vars:
+    - user_name: pedro
+#Fica faltando colocar o arquivo de configuracao do usuario na minha maquina
+# - name: Verify localhost
+#   hosts: localhost
+#   connection: local
+#   tasks:
+#     - name: Just execute a ls -ltr command"
+#       ansible.builtin.shell:
+#         cmd: "ls -ltrh"
+#       register: "output"
+#
+#     - ansible.builtin.debug:
+#         var: output

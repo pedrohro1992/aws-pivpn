@@ -1,0 +1,15 @@
+---
+#TODO Adiciona array de for para checar se usuarios existem e depois adicionar usuario baseado no array
+#vai ter que se virar depois em copiar o arquivo de configuracao certo do target pra maquina local
+
+- name: Check if user exist
+  ansible.builtin.stat:
+    path: /home/ubuntu/configs/{{ user_name }}.conf
+  register: pivpn_user
+  tags: pivpn_user
+
+- name: Create user config file
+  ansible.builtin.shell:
+    cmd: "pivpn -a -n {{ user_name }}"
+  when:
+    - not pivpn_user.stat.exists

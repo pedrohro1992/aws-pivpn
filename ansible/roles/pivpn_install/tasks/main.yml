@@ -1,0 +1,28 @@
+---
+- name: Check PiVPN installation status
+  ansible.builtin.stat:
+    path: /usr/local/bin/pivpn
+  register: pivpn
+  tags: pivpn
+
+- name: Download pivpn installation script
+  ansible.builtin.get_url:
+    url: https://install.pivpn.io
+    dest: /home/ubuntu/install.sh
+    mode: "0755"
+  when:
+    - not pivpn.stat.exists
+
+- name: Copy PiVPN Configuration File
+  ansible.builtin.template:
+    src: setupVars.conf.j2
+    dest: /home/ubuntu/options.conf
+    mode: "0644"
+  when:
+    - not pivpn.stat.exists
+
+- name: Execute pivpn Installation Script
+  ansible.builtin.shell:
+    cmd: "/home/ubuntu/install.sh --unattended options.conf"
+  when:
+    - not pivpn.stat.exists
