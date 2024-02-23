@@ -1,4 +1,4 @@
-resource "aws_instance" "wireguard_instance" {
+resource "aws_instance" "pivpn-instance" {
   ami                         = "ami-0c7217cdde317cfec" //TODO Resolver o Data para AMI
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.generated_key.key_name
