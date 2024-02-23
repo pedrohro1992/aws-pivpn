@@ -1,4 +1,4 @@
-resource "aws_instance" "pivpn-instance" {
+resource "aws_instance" "pivpn_instance" {
   ami                         = "ami-0c7217cdde317cfec" //TODO Resolver o Data para AMI
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.generated_key.key_name
@@ -20,7 +20,7 @@ resource "aws_eip" "wireguard_eip" {
 }
 
 resource "aws_eip_association" "wireguard_eip_association" {
-  instance_id   = aws_instance.wireguard_instance.id
+  instance_id   = aws_instance.pivpn_instance.id
   allocation_id = aws_eip.wireguard_eip.id
 }
 
