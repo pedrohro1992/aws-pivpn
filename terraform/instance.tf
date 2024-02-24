@@ -20,7 +20,7 @@ resource "aws_eip" "wireguard_eip" {
 }
 
 resource "aws_eip_association" "wireguard_eip_association" {
-  instance_id   = aws_instance.pivpn_instance.id
-  allocation_id = aws_eip.wireguard_eip.id
+  instance_id     = aws_instance.pivpn_instance.id
+    allocation_id = aws_eip.wireguard_eip.id
 }
 
