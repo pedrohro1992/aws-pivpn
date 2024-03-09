@@ -5,7 +5,7 @@ resource "aws_instance" "pivpn_instance" {
   vpc_security_group_ids      = [aws_security_group.wireguard.id]
   associate_public_ip_address = true
 
-  subnet_id = "subnet-059ecb67aa70fbcaa" //TODO Depois de resolver a conf da vpn, preciso resolver o data pro subnet 
+  subnet_id = "subnet-00cd2275a18735510" //TODO Depois de resolver a conf da vpn, preciso resolver o data pro subnet 
 
   depends_on = [aws_security_group_rule.wireguard_vpn_port]
 
@@ -20,7 +20,7 @@ resource "aws_eip" "wireguard_eip" {
 }
 
 resource "aws_eip_association" "wireguard_eip_association" {
-  instance_id     = aws_instance.pivpn_instance.id
-    allocation_id = aws_eip.wireguard_eip.id
+  instance_id   = aws_instance.pivpn_instance.id
+  allocation_id = aws_eip.wireguard_eip.id
 }
 
