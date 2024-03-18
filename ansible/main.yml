@@ -22,7 +22,7 @@
   roles:
     - add_vpn_user
   vars:
-    - user_name: pedro
+    - user_name: wsl-windows
 #Fica faltando colocar o arquivo de configuracao do usuario na minha maquina
 # - name: Verify localhost
 #   hosts: localhost

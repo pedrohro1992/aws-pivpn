@@ -5,7 +5,7 @@ resource "aws_instance" "pivpn_instance" {
   vpc_security_group_ids      = [aws_security_group.wireguard.id]
   associate_public_ip_address = true
 
-  subnet_id = "subnet-00cd2275a18735510" //TODO Depois de resolver a conf da vpn, preciso resolver o data pro subnet 
+  subnet_id = data.aws_subnet.public[0].id
 
   depends_on = [aws_security_group_rule.wireguard_vpn_port]
 
