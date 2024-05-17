@@ -1,5 +1,5 @@
 - name: Getting EC2 Instancess facts
-  hosts: wireguard
+  hosts: pivpn
   become: true
   user: "{{ ansible_ssh_user }}"
   gather_facts: false
@@ -9,7 +9,7 @@
       debug: var=ansible_ec2_public_ipv4
 
 - name: Install pivpn
-  hosts: wireguard
+  hosts: pivpn
   become: true
   roles:
     - pivpn_install
@@ -17,12 +17,12 @@
     - pivpn_public_server_name: "{{ ansible_ec2_public_ipv4 }}"
 
 - name: Install pivpn
-  hosts: wireguard
+  hosts: pivpn
   become: true
   roles:
     - add_vpn_user
   vars:
-    - user_name: wsl-windows
+    - user_name: fedora
 #Fica faltando colocar o arquivo de configuracao do usuario na minha maquina
 # - name: Verify localhost
 #   hosts: localhost

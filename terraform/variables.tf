@@ -16,14 +16,14 @@ variable "ssh_server_port" {
   default     = 22
 }
 
-variable "wireguard_protocol" {
-  description = "The protocol for communicate with the Wireguard vpn"
+variable "pivpn_protocol" {
+  description = "The protocol for communicate with the PiVPN"
   type        = string
   default     = "UDP"
 }
 
 
-variable "wireguard_port" {
+variable "pivpn_port" {
   description = "The port witch the vpn appliance will listen on"
   type        = number
   default     = 51820
