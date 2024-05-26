@@ -1,5 +1,5 @@
 plugin: aws_ec2
-aws_profile: default
+aws_profile: cacetinho-sa-dev
 regions:
 - us-east-1
 

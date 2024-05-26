@@ -16,11 +16,11 @@ resource "aws_instance" "pivpn_instance" {
   }
 }
 
-resource "aws_eie" "pivpn_eip" {
+resource "aws_eip" "pivpn_eip" {
   domain = "vpc"
 }
 
-resource "aws_eip_associetion" "pivpn_eip_association" {
+resource "aws_eip_association" "pivpn_eip_association" {
   instance_id   = aws_instance.pivpn_instance.id
   allocation_id = aws_eip.pivpn_eip.id
 }
